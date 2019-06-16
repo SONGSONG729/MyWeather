@@ -2,7 +2,7 @@ package com.example.myweather.db;
 
 import org.litepal.crud.DataSupport;
 
-public class Country extends DataSupport {
+public class County extends DataSupport {
     /**
      * 记录县
      */
