@@ -1,14 +1,19 @@
 package com.example.myweather.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.myweather.db.City;
 import com.example.myweather.db.County;
 import com.example.myweather.db.Province;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import interfaces.heweather.com.interfacesmodule.bean.weather.Weather;
+import interfaces.heweather.com.interfacesmodule.bean.weather.now.NowBase;
 
 /**
  * 处理获取到的Json数据
@@ -60,6 +65,7 @@ public class Utility {
         }
         return false;
     }
+
     /*解析和处理服务器返回的县级数据 */
     public static boolean handleCountyResponse(String response,int cityId){
         if (!TextUtils.isEmpty(response)){
@@ -83,4 +89,34 @@ public class Utility {
         return false;
     }
 
+    /*将返回的JSON数据解析成Weather实体类*/
+    public static Weather handleWeatherResponse(String response){
+        try {
+            //通过JSONObject和JSONArray将天气数据中的主体内容解析出来
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
+
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            Log.i("gson",weatherContent);
+            //将JSON数据转换成Weather对象
+            return new Gson().fromJson(weatherContent, interfaces.heweather.com.interfacesmodule.bean.weather.Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /*public static NowBase handleNowBaseResponse(String response){
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("now");
+            String nowContent = jsonArray.getJSONObject(0).toString();
+
+            return new Gson().fromJson(nowContent, NowBase.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }*/
 }
