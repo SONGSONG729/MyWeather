@@ -163,23 +163,18 @@ public class WeatherActivity extends AppCompatActivity {
             int infoId = infoUtils.getDayIconDark(infoCode);
 
             dateText.setText(forecast.getDate());
-            Log.i("date:",forecast.getDate());
             infoImage.setImageResource(infoId);
             infoText.setText(forecast.getCond_txt_d());
-            Log.i("date:",forecast.getCond_txt_d());
             maxText.setText(forecast.getTmp_max());
-            Log.i("date:",forecast.getTmp_max());
             minText.setText(forecast.getTmp_min());
-            Log.i("date:",forecast.getTmp_min());
             forecastLayout.addView(view);
         }
 
         humText.setText("湿度" + weather.getNow().getHum());
         cloudText.setText("降雨量" + weather.getNow().getPcpn());
         String comfort = "舒适度：" +weather.getLifestyle().get(0).getTxt();
-        String carWash = " 穿衣指数：" +weather.getLifestyle().get(1).getTxt();
+        String carWash = "穿衣指数：" +weather.getLifestyle().get(1).getTxt();
         String sport = "运动建议：" +weather.getLifestyle().get(4).getTxt();
-        Log.i("com:",comfort+carWash+sport);
         comfortText.setText(comfort);
         clothWareText.setText(carWash);
         sportText.setText(sport);

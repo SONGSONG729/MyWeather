@@ -96,6 +96,7 @@ public class Utility {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
 
+            //打印gson数据
             String weatherContent = jsonArray.getJSONObject(0).toString();
             Log.i("gson",weatherContent);
             //将JSON数据转换成Weather对象

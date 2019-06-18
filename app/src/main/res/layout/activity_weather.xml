@@ -29,6 +29,13 @@
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         android:src="@mipmap/back_100d" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/iv_back"
+                        android:layout_marginTop="-50dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/back"/>
                     <include layout="@layout/title"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
@@ -59,6 +66,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_below="@id/layout_forecast"
                         android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
                         android:id="@+id/layout_suggestion"/>
                 </RelativeLayout>
             </ScrollView>

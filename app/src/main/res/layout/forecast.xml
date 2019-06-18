@@ -13,7 +13,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:text="预报"
-        android:textColor="#fff"
+        android:textColor="@color/text"
         android:textSize="20sp"/>
     <!--未来几天天气信息的布局，需要根据服务器返回的数据在代码中动态添加-->
     <LinearLayout
