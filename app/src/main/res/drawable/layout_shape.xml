@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--设置layout的布局颜色-->
+    <solid android:color="@color/transparent2"/>
+    <!--设置边框线的粗细和颜色 -->
+    <stroke
+        android:width="0.03dp"
+        android:color="@color/darkgray"/>
+    <padding
+        android:bottom="1dp"
+        android:left="1dp"
+        android:right="1dp"
+        android:top="1dp"/>
+
+    <!--设置角 -->
+    <corners android:radius="10dp"/>
+
+</shape>

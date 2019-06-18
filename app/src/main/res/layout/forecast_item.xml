@@ -13,6 +13,13 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="2"
         android:textColor="#fff"/>
+    <!--天气图片-->
+    <ImageView
+        android:id="@+id/info_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/icon_100d"/>
     <!--天气概况-->
     <TextView
         android:id="@+id/info_text"
@@ -22,6 +29,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="#fff"/>
+
     <!--最高温度-->
     <TextView
         android:id="@+id/max_text"

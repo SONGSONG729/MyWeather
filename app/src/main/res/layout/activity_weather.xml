@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -20,16 +19,48 @@
                 android:layout_height="match_parent"
                 android:scrollbars="none"
                 android:overScrollMode="never">
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <include layout="@layout/title"/>
-                    <include layout="@layout/now"/>
-                    <include layout="@layout/forecast"/>
-                    <include layout="@layout/others"/>
-                    <include layout="@layout/suggestion"/>
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/back_100d" />
+                    <include layout="@layout/title"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/layout_title"/>
+                    <include layout="@layout/now"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/layout_title"
+                        android:id="@+id/layout_now"/>
+                    <include layout="@layout/others"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/layout_now"
+                        android:id="@+id/layout_others"/>
+                    <include layout="@layout/forecast"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@id/layout_others"
+                        android:id="@+id/layout_forecast"/>
+                    <include layout="@layout/suggestion"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_below="@id/layout_forecast"
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/layout_suggestion"/>
+                </RelativeLayout>
             </ScrollView>
 
         </android.support.v4.widget.SwipeRefreshLayout>

@@ -8,16 +8,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myweather.util.HttpUtil;
+import com.example.myweather.util.IconUtils;
 import com.example.myweather.util.Utility;
 
 import java.io.IOException;
@@ -47,12 +48,14 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView comfortText;
     private TextView clothWareText;
     private TextView sportText;
+    private ImageView weatherInfoImage;
+    private ImageView ivBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
         initView();
-        swipeRefresh.setColorSchemeColors(R.color.colorPrimary);
+        swipeRefresh.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         navButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,17 +141,30 @@ public class WeatherActivity extends AppCompatActivity {
         String weatherInfo = weather.getNow().getCond_txt();
         titleCity.setText(cityName);
         titleUpdateTime.setText(updateTime);
-        degreeText.setText(degree);
+        degreeText.setText(degree+"℃");
         weatherInfoText.setText(weatherInfo);
+        String weatherCode = weather.getNow().getCond_code();
+        IconUtils iconUtils = new IconUtils();
+        int iconId = iconUtils.getDayIconDark(weatherCode);
+        int backId = iconUtils.getDayBack(weatherCode);
+        weatherInfoImage.setImageResource(iconId);
+        ivBack.setImageResource(backId);
+
         forecastLayout.removeAllViews();
         for (ForecastBase forecast : weather.getDaily_forecast()){
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
             TextView dateText = (TextView)view.findViewById(R.id.date_text);
+            ImageView infoImage = (ImageView) view.findViewById(R.id.info_iv);
             TextView infoText = (TextView)view.findViewById(R.id.info_text);
             TextView maxText = (TextView)view.findViewById(R.id.max_text);
             TextView minText = (TextView)view.findViewById(R.id.min_text);
+            String infoCode = forecast.getCond_code_d();
+            IconUtils infoUtils = new IconUtils();
+            int infoId = infoUtils.getDayIconDark(infoCode);
+
             dateText.setText(forecast.getDate());
             Log.i("date:",forecast.getDate());
+            infoImage.setImageResource(infoId);
             infoText.setText(forecast.getCond_txt_d());
             Log.i("date:",forecast.getCond_txt_d());
             maxText.setText(forecast.getTmp_max());
@@ -158,8 +174,8 @@ public class WeatherActivity extends AppCompatActivity {
             forecastLayout.addView(view);
         }
 
-        humText.setText(weather.getNow().getHum());
-        cloudText.setText(weather.getNow().getCloud());
+        humText.setText("湿度" + weather.getNow().getHum());
+        cloudText.setText("降雨量" + weather.getNow().getPcpn());
         String comfort = "舒适度：" +weather.getLifestyle().get(0).getTxt();
         String carWash = " 穿衣指数：" +weather.getLifestyle().get(1).getTxt();
         String sport = "运动建议：" +weather.getLifestyle().get(4).getTxt();
@@ -186,6 +202,9 @@ public class WeatherActivity extends AppCompatActivity {
         comfortText = (TextView) findViewById(R.id.comfort_text);
         clothWareText = (TextView) findViewById(R.id.cloth_ware_text);
         sportText = (TextView)findViewById(R.id.sport_text);
+        weatherInfoImage = (ImageView) findViewById(R.id.weather_info_image);
+        ivBack = (ImageView) findViewById(R.id.iv_back);
+
     }
 }
 
