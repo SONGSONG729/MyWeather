@@ -1,5 +1,6 @@
 package com.example.myweather;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,6 +18,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myweather.service.AutoUpdateService;
 import com.example.myweather.util.HttpUtil;
 import com.example.myweather.util.IconUtils;
 import com.example.myweather.util.Utility;
@@ -179,6 +181,8 @@ public class WeatherActivity extends AppCompatActivity {
         clothWareText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);  //ScrollView设为可见
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     //初始化控件

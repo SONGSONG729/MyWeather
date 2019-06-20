@@ -151,6 +151,7 @@
     <color name="black">#000000</color><!--黑色 -->
     <color name="transparent">#0000</color><!-- 透明 -->
     <color name="transparent2">#33c0c0c0</color><!-- 透明 -->
+    <color name="transparent3">#8000</color><!-- 透明 -->
     <color name="text">#4a4a4a</color>
 
 </resources>
